@@ -1,0 +1,18 @@
+const Discord = require('discord.js')
+const moment = require('moment')
+moment.locale('pt-BR')
+module.exports.run = async (client, message, args) => {
+  const infoserve = new Discord.MessageEmbed()
+  .setAuthor(message.guild.name, message.guild.iconURL())
+  .setTitle(`Informações do Servidor`)
+  .setDescription(message.guild.name)
+  .addField("<:identidade:729020479654068324> NOME", `**${message.guild.name}**`)
+  .addField("<:owner:729019531485511750> DONO", message.guild.owner)
+  .addField("<:users:729019638272229487> MEMBROS", `**${message.guild.memberCount}**`, true)
+  .addField("💻 CANAIS", `**${message.guild.channels.cache.size}**`)
+  .addField("📅 CRIADO EM", `**${moment(message.guild.createdAt).format('DD/MM/YYYY')}**`, true)
+  .setThumbnail(message.guild.iconURL())
+  .setColor('#d6951c')
+  .setFooter(message.guild.name, message.guild.iconURL())
+  message.channel.send(infoserve)
+}
